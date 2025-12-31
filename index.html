@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mutlu Yıllar Essegim</title>
+    <link rel="icon" href="imgs/navbar-logo.png" />
+
+    <style>
+      /* GENEL */
+      body {
+        background: radial-gradient(circle, #0b3d2e 0%, #041f17 100%);
+        color: #fdf6d8;
+        font-family: Georgia, serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        overflow: hidden; /* başta kapalı */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* ANA KUTU */
+      #main-container {
+        background: rgba(0, 0, 0, 0.55);
+        padding: 40px;
+        border-radius: 20px;
+        border: 3px solid #d4af37;
+        max-width: 600px;
+        width: 90%;
+        text-align: center;
+        z-index: 5;
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* ZARF */
+      #envelope-stage {
+        cursor: pointer;
+      }
+      .envelope-icon {
+        font-size: 100px;
+      }
+      .click-hint {
+        animation: pulse 2s infinite;
+      }
+
+      /* MEKTUP */
+      #letter-stage {
+        display: none;
+        opacity: 0;
+        transform: translateY(25px);
+        transition: 1s;
+      }
+      #letter-stage.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .letter-paper {
+        background: #fffaf0;
+        color: #333;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        font-size: 1.25em;
+        line-height: 1.8;
+      }
+
+      /* RENKLİ BAŞLIK */
+      .letter-paper h2 {
+        font-size: 2.2em;
+        margin-top: 0;
+        background: linear-gradient(45deg, #d4af37, #c62828, #2e7d32);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+      }
+
+      /* BUTON */
+      .video-btn {
+        background: linear-gradient(45deg, #d4af37, #ffdf6c);
+        border: none;
+        padding: 15px 35px;
+        font-size: 1.1em;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+
+      /* VIDEO */
+      #video-stage {
+        display: none;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+      #video-stage.visible {
+        opacity: 1;
+      }
+      .video-wrapper {
+        border: 3px solid #d4af37;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      video {
+        width: 100%;
+        display: block;
+        background: black;
+      }
+
+      /* KAR */
+      .snowflake {
+        position: fixed;
+        top: -10%;
+        color: #fff;
+        pointer-events: none;
+        animation: fall 10s linear infinite;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* HAVAİ FİŞEK */
+      #fireworks {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- KAR -->
+    <div class="snowflake" style="left: 10%">❄</div>
+    <div class="snowflake" style="left: 30%">❅</div>
+    <div class="snowflake" style="left: 50%">❆</div>
+    <div class="snowflake" style="left: 70%">❄</div>
+    <div class="snowflake" style="left: 90%">❅</div>
+
+    <canvas id="fireworks"></canvas>
+
+    <div id="main-container">
+      <!-- ZARF -->
+      <div id="envelope-stage" onclick="openLetter()">
+        <div class="envelope-icon">💌</div>
+        <p class="click-hint">Sana yılbaşı için bir mesajım var hayatım…</p>
+      </div>
+
+      <!-- MEKTUP -->
+      <div id="letter-stage">
+        <div class="letter-paper">
+          <h2>Canım Sevgilim</h2>
+          <p>
+            Sevgilim, güzelim benim koskoca 1 yıl çok hızlı ve dolu dolu geçti. İyi ki 30 Ekim 2024te konuşmaya başladık
+            şimdi ikinci kez seninle yılbaşına giriceğiz bi öncekinde sadece konuşuyorduk zaten sana ilk yazdığım
+            zamanlar bazen iyiydin bazen çok soğuktun hiç istemiyordun beni çok üzülüyordum ama senden vazgeçemedim seni
+            gerçekten çok seviyordum hala çok seviyorum her zamanda çok sevicem. İlk zamanlar uğraştım falan ama iyiki
+            de uğraşmışım her bir saniyesine deydi o günden beri hala birlikteyiz inşallah sozsuza kadarda birlikte
+            oluruz. Gerçekten çok seviyorum seni ya keşke ölümsüzlük olsada sonsuza kadar seninle olsam inşallah
+            öldükten sonrada cennete yine birlikte oluruz. Ve tekrar bana aldığın hediye için tekrar teşekkür ediyorum
+            gerçekten mutluluk kaynağımsın.
+          </p>
+          <p>
+            HAYATIM BENİM UMARUM BİRLİKTE ÇOK SAĞLIKLI, MUTLU, HUZURLU, BAŞARILI, BAŞARILI, ÇOK PARALI, HER ZAMAN
+            BİRLİKTE NİCE SENELERE GİRERİZ ÇOKKK AŞIĞIMMM SANAAA İYİİİİ Kİİİİ VARSIINNNN🤍
+          </p>
+        </div>
+        <button class="video-btn" onclick="showVideo()">Sürprizi Aç Esseek 🎁</button>
+      </div>
+
+      <!-- VIDEO -->
+      <div id="video-stage">
+        <div class="video-wrapper">
+          <video id="video" controls playsinline>
+            <source src="video.mp4" type="video/mp4" />
+            Tarayıcın videoyu desteklemiyor.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ZARF */
+      function openLetter() {
+        document.getElementById("envelope-stage").style.display = "none";
+        const l = document.getElementById("letter-stage");
+        l.style.display = "block";
+        setTimeout(() => l.classList.add("visible"), 50);
+
+        // KAYDIRMAYI AÇ
+        document.body.style.overflowY = "auto";
+      }
+
+      /* VIDEO */
+      function showVideo() {
+        document.querySelector(".video-btn").style.display = "none";
+        const vStage = document.getElementById("video-stage");
+        vStage.style.display = "block";
+        setTimeout(() => vStage.classList.add("visible"), 50);
+
+        const video = document.getElementById("video");
+        video.play();
+        startFireworks();
+
+        video.onended = () => {
+          finalFireworks();
+        };
+      }
+
+      /* HAVAİ FİŞEK */
+      const canvas = document.getElementById("fireworks");
+      const ctx = canvas.getContext("2d");
+      let w,
+        h,
+        active = false;
+      const colors = ["#d4af37", "#c62828", "#2e7d32"];
+
+      function resize() {
+        w = canvas.width = innerWidth;
+        h = canvas.height = innerHeight;
+      }
+      addEventListener("resize", resize);
+      resize();
+
+      let particles = [];
+      class P {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.vx = (Math.random() - 0.5) * 6;
+          this.vy = (Math.random() - 0.5) * 6;
+          this.life = 80;
+          this.c = colors[(Math.random() * colors.length) | 0];
+        }
+        u() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.life--;
+        }
+        d() {
+          ctx.fillStyle = this.c;
+          ctx.fillRect(this.x, this.y, 2, 2);
+        }
+      }
+      function boom(x, y, n = 80) {
+        for (let i = 0; i < n; i++) particles.push(new P(x, y));
+      }
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+        if (active && Math.random() < 0.03) boom(Math.random() * w, (Math.random() * h) / 2);
+        particles.forEach((p, i) => {
+          p.u();
+          p.d();
+          if (p.life < 0) particles.splice(i, 1);
+        });
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      function startFireworks() {
+        active = true;
+      }
+      function finalFireworks() {
+        for (let i = 0; i < 6; i++) setTimeout(() => boom(w / 2, h / 3, 150), i * 300);
+      }
+    </script>
+  </body>
+</html>
